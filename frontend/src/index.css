@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Light Mode */
+  --color-background: #ffffff; /* Pure white canvas */
+  --color-background-card: #daf0ee; /* Soft, tinted mint for cards/sidebars */
+  --color-foreground: #3b413c; /* Deep charcoal for crisp readability */
+  --color-foreground-muted: #626e6a; /* Mid-tone slate for secondary text */
+
+  --color-primary: #3b413c; /* Primary actions use the deep charcoal */
+  --color-secondary: #9db5b2; /* Muted slate-green for secondary actions */
+  --color-accent: #94d1be; /* Vibrant mint for highlights, badges, active states */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode */
+    --color-background: #1c201e; /* Deepened version of your charcoal */
+    --color-background-card: #272c29; /* Slightly lighter charcoal for cards */
+    --color-foreground: #ffffff; /* Pure white text */
+    --color-foreground-muted: #9db5b2; /* Sage green used as readable muted text */
+
+    --color-primary: #94d1be; /* Mint pops perfectly as the primary action on dark */
+    --color-secondary: #3b413c; /* Deep charcoal backdrop for secondary buttons */
+    --color-accent: #daf0ee; /* Ice mint for high-end highlights */
+  }
+}
+
+@theme inline {
+  --color-foreground: var(--color-foreground);
+  --color-foreground-muted: var(--color-foreground-muted);
+  --color-background: var(--color-background);
+  --color-background-card: var(--color-background-card);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+@layer components {
+  .btn-header-primary {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all
+           bg-[var(--color-primary)] text-[var(--color-background)] 
+           hover:opacity-90 active:scale-98;
+  }
+  .btn-header-secondary {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all
+           bg-[var(--color-background-card)] text-[var(--color-foreground)]
+           border border-[var(--color-secondary)]/20
+           hover:bg-[var(--color-secondary)]/10 active:scale-98;
+  }
+}
