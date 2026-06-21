@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
 
-export const validate = async (
+export const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction,
