@@ -5,10 +5,14 @@ import {
   signOut,
   verify,
 } from "../controllers/authController.js";
+import { validate } from "../middleware/authMiddleware.js";
 
 export const authRouter = Router();
 
 authRouter.post("/sign-up", signUp);
+
 authRouter.post("/sign-in", signIn);
+
 authRouter.post("/sign-out", signOut);
-authRouter.get("/verify", verify);
+
+authRouter.get("/verify", validate, verify);

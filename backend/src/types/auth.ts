@@ -1,7 +1,7 @@
 import z from "zod";
 import { type User } from "../generated/prisma/client.js";
 
-const signUpSchema = z.object({
+export const signUpSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
   firstName: z
     .string()
@@ -16,7 +16,7 @@ const signUpSchema = z.object({
 
 export type SignUp = z.infer<typeof signUpSchema>;
 
-const signInSchema = z.object({
+export const signInSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
   password: z.string().min(1, "Password is required"),
 });
@@ -24,6 +24,8 @@ const signInSchema = z.object({
 export type SignIn = z.infer<typeof signInSchema>;
 
 export type AuthResponse = {
-  user: User;
+  user: Omit<User, "password">;
   token: string;
 };
+
+export type SafeUser = Omit<User, "password">;
